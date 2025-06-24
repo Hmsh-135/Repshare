@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Optional: Add a favicon link here if you add a favicon.ico file to your root directory -->
+    <!-- <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
     <style>
         /* Base styles for light mode */
         body {
@@ -222,7 +224,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('https://images.freecreatives.com/wp-content/uploads/2016/04/Solid-Black-Website-Background.jpg'); /* Commented out due to 404 error on deployment */
+            /* background-image: url('assets/images/your-background-image.jpg'); */ /* Commented out due to 404 error on deployment */
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
@@ -748,8 +750,8 @@
         const loginNavBtnMobile = document.getElementById('login-nav-btn-mobile');
         const signupNavBtnMobile = document.getElementById('signup-nav-btn-mobile');
         const logoutBtnMobile = document.getElementById('logout-btn-mobile');
-        // Corrected the assignment here: Removed 'document ='
-        const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+        // Corrected the assignment here: Removed `document =` which was causing the SyntaxError
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile'); 
         const themeIconMobile = document.getElementById('theme-icon-mobile');
 
         // Category filter buttons
