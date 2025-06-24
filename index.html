@@ -690,7 +690,7 @@
         apiKey: "AIzaSyB8z89BvKYPiyjRawukvWHlluUehK2DYWM",
         authDomain: "my-project-a64ba.firebaseapp.com",
         projectId: "my-project-a64ba",
-        storageBucket: "my-project-a64ba.firebasestorage.app",
+        storageBucket: "my-project-a64ba.firebaseostorage.app",
         messagingSenderId: "915041063505",
         appId: "1:915041063505:web:1f2717f4759af1bb879e70"
         };
@@ -1327,31 +1327,20 @@
 
                 isAuthReady = true; // Auth state is ready even if unauthenticated
                 
-                // Attempt anonymous sign-in only if no other auth method is used and no user is signed in
-                if (initialAuthToken) { // If running in Canvas, try to use the provided token
+                // Attempt custom token sign-in if provided by Canvas environment
+                if (initialAuthToken) { 
                     try {
                         await signInWithCustomToken(auth, initialAuthToken);
                         console.log("Signed in with custom token for initial access.");
                     } catch (error) {
                         console.error("Error during custom token sign-in:", error);
-                        // Fallback to anonymous if custom token fails
-                        try {
-                            await signInAnonymously(auth);
-                            console.log("Signed in anonymously as fallback.");
-                        } catch (anonError) {
-                            console.error("Error during anonymous fallback sign-in:", anonError);
-                            // Make sure Anonymous Auth is enabled in Firebase Console -> Authentication -> Sign-in method
-                        }
+                        // If custom token fails, the user will simply remain unauthenticated.
+                        // No anonymous fallback as per user's request.
                     }
-                } else { // If not in Canvas (e.g., local development), just try anonymous
-                    try {
-                        await signInAnonymously(auth);
-                        console.log("Signed in anonymously for initial access (outside Canvas).");
-                    } catch (error) {
-                        console.error("Error during anonymous sign-in:", error);
-                        // Make sure Anonymous Auth is enabled in Firebase Console -> Authentication -> Sign-in method
-                    }
-                }
+                } 
+                // If initialAuthToken is not present, or custom token sign-in fails,
+                // the user will remain unauthenticated.
+                
                 listenToRecipes(); // Still load public recipes when unauthenticated/anonymous
                 showPage(homePage); // Default to home page for public view
             }
