@@ -1971,7 +1971,7 @@
                     showModalMessage("Recipe deleted successfully!", null);
                 } else { showModalMessage("You can only delete your own recipes.", null); }
             } catch (error) { console.error("Error deleting recipe:", error); showModalMessage("Failed to delete recipe. Please try again.", null); }
-        });
+        };
 
         // Profile Page Functionality
         updateProfileBtn.addEventListener('click', async () => {
