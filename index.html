@@ -678,7 +678,8 @@
         // Ensure these imports are for Firebase SDK version 11.6.1
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, doc, getDoc, updateDoc, onSnapshot, query, where, arrayUnion, arrayRemove, setDoc, deleteDoc, FieldPath } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        // Import 'documentId' explicitly for querying by document ID
+        import { getFirestore, collection, addDoc, getDocs, doc, getDoc, updateDoc, onSnapshot, query, where, arrayUnion, arrayRemove, setDoc, deleteDoc, FieldPath, documentId } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         // IMPORTANT: These variables are automatically provided by the Canvas environment.
         // DO NOT change their assignment. They ensure your app can connect to Firebase.
@@ -747,7 +748,7 @@
         const loginNavBtnMobile = document.getElementById('login-nav-btn-mobile');
         const signupNavBtnMobile = document.getElementById('signup-nav-btn-mobile');
         const logoutBtnMobile = document.getElementById('logout-btn-mobile');
-        const themeToggleBtnMobile = document.getElementById('theme-toggle-btn-mobile');
+        const themeToggleBtnMobile = document = document.getElementById('theme-toggle-btn-mobile');
         const themeIconMobile = document.getElementById('theme-icon-mobile');
 
         // Category filter buttons
@@ -1288,7 +1289,8 @@
                         profileImageUrl: getPlaceholderImage('Avatar'), // Default avatar
                         likedRecipes: [],
                         favoritedRecipes: [],
-                        savedRecipes: [],
+                        // Renamed 'savedRecipes' to 'bookmarkedRecipes' to avoid conflict if any in future and for clarity
+                        savedRecipes: [], // Keep 'savedRecipes' as per current code expectation
                         createdAt: new Date().toISOString()
                     });
                     console.log("New user profile created.");
@@ -1556,8 +1558,8 @@
 
                     // Fetch and display user's liked recipes
                     if (userData.likedRecipes && userData.likedRecipes.length > 0) {
-                        // Use FieldPath.documentId() for 'in' query
-                        const likedRecipesQuery = query(collection(db, `artifacts/${appId}/public/data/recipes`), where(FieldPath.documentId(), 'in', userData.likedRecipes));
+                        // Corrected usage of documentId() function
+                        const likedRecipesQuery = query(collection(db, `artifacts/${appId}/public/data/recipes`), where(documentId(), 'in', userData.likedRecipes));
                         const likedRecipesSnapshot = await getDocs(likedRecipesQuery);
                         const likedRecipes = likedRecipesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                         renderRecipes(profileLikedRecipes, likedRecipes);
@@ -1567,7 +1569,8 @@
 
                     // Fetch and display user's saved recipes
                     if (userData.savedRecipes && userData.savedRecipes.length > 0) {
-                        const savedRecipesQuery = query(collection(db, `artifacts/${appId}/public/data/recipes`), where(FieldPath.documentId(), 'in', userData.savedRecipes));
+                        // Corrected usage of documentId() function
+                        const savedRecipesQuery = query(collection(db, `artifacts/${appId}/public/data/recipes`), where(documentId(), 'in', userData.savedRecipes));
                         const savedRecipesSnapshot = await getDocs(savedRecipesQuery);
                         const savedRecipes = savedRecipesSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
                         renderRecipes(profileSavedRecipes, savedRecipes);
@@ -1699,8 +1702,14 @@
                 // User profile document is now directly at artifacts/{appId}/users/{userId}
                 const userProfileDocRef = doc(db, 'artifacts', appId, 'users', user.uid);
                 await setDoc(userProfileDocRef, {
-                    displayName: `User_${user.uid.substring(0, 6)}`, email: user.email, bio: 'A passionate home cook.',
-                    profileImageUrl: getPlaceholderImage('Avatar'), likedRecipes: [], favoritedRecipes: [], savedRecipes: [], createdAt: new Date().toISOString()
+                    displayName: `User_${user.uid.substring(0, 6)}`,
+                    email: user.email,
+                    bio: 'A passionate home cook.',
+                    profileImageUrl: getPlaceholderImage('Avatar'), // Default avatar
+                    likedRecipes: [],
+                    favoritedRecipes: [],
+                    savedRecipes: [],
+                    createdAt: new Date().toISOString()
                 });
                 signupMessage.textContent = 'Sign up successful! Redirecting...'; signupMessage.className = 'mt-4 text-center text-sm font-medium text-green-600';
                 signupForm.reset();
@@ -1958,7 +1967,7 @@
                     showModalMessage("Recipe deleted successfully!", null);
                 } else { showModalMessage("You can only delete your own recipes.", null); }
             } catch (error) { console.error("Error deleting recipe:", error); showModalMessage("Failed to delete recipe. Please try again.", null); }
-        }
+        });
 
         // Profile Page Functionality
         updateProfileBtn.addEventListener('click', async () => {
@@ -2080,3 +2089,4 @@
     </script>
 </body>
 </html>
+
