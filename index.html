@@ -12,332 +12,325 @@
     <!-- Optional: Add a favicon link here if you add a favicon.ico file to your root directory -->
     <!-- <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
     <style>
-        /* Base styles for light mode */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Default background for main content */
-            color: #333;
-            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for theme changes */
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', sans-serif;
-        }
-        .header-logo {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 800;
-        }
+        /* === Base Styles === */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+.header-logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
 
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #1a202c; /* Dark background */
-            color: #e2e8f0; /* Light text */
-        }
-        body.dark-mode .card {
-            background-color: #2d3748; /* Darker card background */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Stronger shadow for contrast */
-        }
-        body.dark-mode .card:hover {
-            transform: translateY(-2px); /* Subtle lift on hover */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-        }
-        body.dark-mode .text-gray-800 {
-            color: #e2e8f0; /* Light text for headings */
-        }
-        body.dark-mode .text-gray-700 {
-            color: #cbd5e0; /* Lighter gray text */
-        }
-        body.dark-mode .text-gray-600 {
-            color: #a0aec0; /* Even lighter gray text */
-        }
-        body.dark-mode .text-gray-500 {
-            color: #718096; /* Lightest gray for subtle text */
-        }
-        body.dark-mode .text-gray-400 {
-            color: #4a5568; /* Still visible but darker */
-        }
-        body.dark-mode .input-field {
-            background-color: #4a5568; /* Dark input background */
-            border-color: #2d3748; /* Darker border */
-            color: #e2e8f0; /* Light text in input */
-        }
-        body.dark-mode .input-field:focus {
-            border-color: #ef4444; /* Red focus remains */
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* Stronger shadow */
-        }
-        body.dark-mode header {
-            background: linear-gradient(to right, #2d3748, #4a5568); /* Darker gradient for header */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-        body.dark-mode .border-gray-100 {
-            border-color: #4a5568; /* Darker border for separators */
-        }
-        body.dark-mode .bg-gray-100 { /* For profile user ID background */
-            background-color: #4a5568;
-        }
-        body.dark-mode .modal-content {
-            background-color: #2d3748;
-            color: #e2e8f0;
-        }
-        body.dark-mode .close-button {
-            color: #cbd5e0;
-        }
-        body.dark-mode .close-button:hover,
-        body.dark-mode .close-button:focus {
-            color: #e2e8f0;
-        }
-        body.dark-mode .auth-background .card {
-            background-color: rgba(45, 55, 72, 0.95); /* Darker transparent card */
-            backdrop-filter: blur(8px); /* Slightly stronger blur */
-        }
-        body.dark-mode .auth-background h1 {
-            color: #e2e8f0; /* Ensure headings are light in dark mode auth pages */
-        }
+/* === Dark Mode Overrides === */
+body.dark-mode {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+body.dark-mode .card {
+    background-color: #2d3748;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+body.dark-mode .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .text-gray-800 { color: #e2e8f0; }
+body.dark-mode .text-gray-700 { color: #cbd5e0; }
+body.dark-mode .text-gray-600 { color: #a0aec0; }
+body.dark-mode .text-gray-500 { color: #718096; }
+body.dark-mode .text-gray-400 { color: #4a5568; }
+body.dark-mode .input-field {
+    background-color: #4a5568;
+    border-color: #2d3748;
+    color: #e2e8f0;
+}
+body.dark-mode .input-field:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4);
+}
+body.dark-mode header {
+    background: linear-gradient(to right, #2d3748, #4a5568);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+body.dark-mode .border-gray-100 { border-color: #4a5568; }
+body.dark-mode .bg-gray-100 { background-color: #4a5568; }
+body.dark-mode .modal-content {
+    background-color: #2d3748;
+    color: #e2e8f0;
+}
+body.dark-mode .close-button {
+    color: #cbd5e0;
+}
+body.dark-mode .close-button:hover,
+body.dark-mode .close-button:focus {
+    color: #e2e8f0;
+}
+body.dark-mode .auth-background .card {
+    background-color: rgba(45, 55, 72, 0.95);
+    backdrop-filter: blur(8px);
+}
+body.dark-mode .auth-background h1 {
+    color: #e2e8f0;
+}
 
+/* === Layout === */
+.container {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 1rem;
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        .card {
-            background-color: #fff;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: all 0.2s ease-in-out; /* Added transition for card hover */
-        }
-        /* Card hover effect */
-        .card:hover {
-            transform: translateY(-2px); /* Subtle lift on hover */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-        }
+/* === Cards === */
+.card {
+    background-color: #fff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+}
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .btn-primary {
-            background-color: #ef4444; /* Red-500 */
-            color: #fff;
-        }
-        .btn-primary:hover {
-            background-color: #dc2626; /* Red-600 */
-            transform: translateY(-2px); /* Enhanced lift */
-            box-shadow: 0 6px 15px rgba(239, 68, 68, 0.4); /* Stronger shadow on hover */
-        }
-        .btn-secondary {
-            background-color: #6b7280; /* Gray-500 */
-            color: #fff;
-        }
-        .btn-secondary:hover {
-            background-color: #4b5563; /* Gray-600 */
-            transform: translateY(-2px); /* Enhanced lift */
-            box-shadow: 0 6px 15px rgba(107, 114, 128, 0.4); /* Stronger shadow on hover */
-        }
-        .btn-outline {
-            border: 2px solid #ef4444;
-            color: #ef4444;
-            background-color: transparent;
-        }
-        .btn-outline:hover {
-            background-color: #fef2f2; /* Red-50 */
-            transform: translateY(-2px); /* Enhanced lift */
-            box-shadow: 0 6px 15px rgba(239, 68, 68, 0.2); /* Stronger shadow on hover */
-        }
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border-radius: 0.75rem;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close-button:hover,
-        .close-button:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: #ef4444;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 0.5rem;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .input-field {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db; /* Gray-300 */
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-        }
-        .input-field:focus {
-            outline: none;
-            border-color: #ef4444; /* Red-500 */
-            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
-        }
+/* === Buttons === */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3);
+}
+.btn-primary {
+    background-color: #ef4444;
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(239, 68, 68, 0.4);
+}
+.btn-secondary {
+    background-color: #6b7280;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #4b5563;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(107, 114, 128, 0.4);
+}
+.btn-outline {
+    border: 2px solid #ef4444;
+    color: #ef4444;
+    background-color: transparent;
+}
+.btn-outline:hover {
+    background-color: #fef2f2;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(239, 68, 68, 0.2);
+}
 
-        /* Styling for the background image on Login/Signup pages */
-        .auth-background {
-            position: relative;
-            overflow: hidden;
-            min-height: calc(100vh - 6rem);
-            padding: 2rem 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* background-image: url('assets/images/your-background-image.jpg'); */ /* Commented out due to 404 error on deployment */
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed; /* Added for better background handling */
-        }
+/* === Modal === */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    width: 80%;
+    max-width: 37.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: scale(0.95);
+    opacity: 0;
+}
+.modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 1.75rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
 
-        /* Overlay to darken image and improve text readability */
-        .auth-background::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark overlay */
-            z-index: -1; /* Between image and content */
-        }
+/* === Spinner === */
+.loading-spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #ef4444;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
-        .auth-background .card {
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white card */
-            backdrop-filter: blur(5px); /* Subtle blur effect on the card */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Stronger shadow for floating effect */
-            position: relative; /* Ensure card stacks above image and overlay */
-            z-index: 1; /* Place above image and overlay */
-        }
+/* === Inputs === */
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+.input-field:focus {
+    outline: none;
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
 
-        /* Header gradient for a polished look */
-        header {
-            background: linear-gradient(to right, #ffffff, #f0f4f8); /* Subtle white to light grey-blue gradient */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Lighter shadow */
-        }
-        body.dark-mode header {
-            background: linear-gradient(to right, #2d3748, #4a5568); /* Darker gradient for header */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
+/* === Auth Background === */
+.auth-background {
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 6rem);
+    padding: 2rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.auth-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+.auth-background .card {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
 
-        /* Recipe card load-in animation */
-        @keyframes fadeInSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .recipe-card {
-            opacity: 0; /* Start hidden */
-            animation: fadeInSlideUp 0.6s ease-out forwards; /* Apply animation */
-        }
-        /* Staggered animation effect for recipe cards */
-        .recipes-grid .recipe-card:nth-child(1) { animation-delay: 0.1s; }
-        .recipes-grid .recipe-card:nth-child(2) { animation-delay: 0.2s; }
-        .recipes-grid .recipe-card:nth-child(3) { animation-delay: 0.3s; }
-        .recipes-grid .recipe-card:nth-child(4) { animation-delay: 0.4s; }
-        .recipes-grid .recipe-card:nth-child(5) { animation-delay: 0.5s; }
-        .recipes-grid .recipe-card:nth-child(6) { animation-delay: 0.6s; }
-        /* Add more as needed for larger grids */
+/* === Header === */
+header {
+    background: linear-gradient(to right, #ffffff, #f0f4f8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
 
-        /* Mobile Menu styles */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.98); /* Slightly transparent white */
-            backdrop-filter: blur(8px);
-            z-index: 1001; /* Above other content */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transform: translateX(100%); /* Start off-screen to the right */
-            transition: transform 0.3s ease-out;
-        }
+/* === Recipe Card Animation (continued) === */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(1.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.recipe-card {
+    opacity: 0;
+    animation: fadeInSlideUp 0.6s ease-out forwards;
+}
+.recipes-grid .recipe-card:nth-child(1) { animation-delay: 0.1s; }
+.recipes-grid .recipe-card:nth-child(2) { animation-delay: 0.2s; }
+.recipes-grid .recipe-card:nth-child(3) { animation-delay: 0.3s; }
+.recipes-grid .recipe-card:nth-child(4) { animation-delay: 0.4s; }
+.recipes-grid .recipe-card:nth-child(5) { animation-delay: 0.5s; }
+.recipes-grid .recipe-card:nth-child(6) { animation-delay: 0.6s; }
+/* Add more nth-child rules as needed for larger grids */
 
-        .mobile-menu.open {
-            transform: translateX(0); /* Slide in */
-        }
+/* === Mobile Menu === */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(8px);
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out;
+}
+.mobile-menu.open {
+    transform: translateX(0);
+}
+body.dark-mode .mobile-menu {
+    background-color: rgba(26, 32, 44, 0.98);
+}
+.mobile-menu .close-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    color: #333;
+}
+body.dark-mode .mobile-menu .close-button {
+    color: #e2e8f0;
+}
 
-        body.dark-mode .mobile-menu {
-            background-color: rgba(26, 32, 44, 0.98); /* Dark background for mobile menu */
-        }
-
-        .mobile-menu .close-button {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            font-size: 2.5rem;
-            color: #333;
-        }
-        body.dark-mode .mobile-menu .close-button {
-            color: #e2e8f0;
-        }
-
-        /* Star rating styles */
-        .star-rating {
-            display: inline-block;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        .star-rating .fa-star {
-            color: #ccc; /* Default star color */
-        }
-        .star-rating .fa-star.active {
-            color: #ffc107; /* Gold for active stars */
-        }
-        .star-rating .fa-star:hover,
-        .star-rating .fa-star:hover ~ .fa-star {
-            color: #ffc107; /* Highlight on hover */
-        }
+/* === Star Rating === */
+.star-rating {
+    display: inline-block;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.star-rating .fa-star {
+    color: #ccc;
+}
+.star-rating .fa-star.active {
+    color: #ffc107;
+}
+.star-rating .fa-star:hover,
+.star-rating .fa-star:hover ~ .fa-star {
+    color: #ffc107;
+}
     </style>
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
