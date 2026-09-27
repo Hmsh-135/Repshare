@@ -156,6 +156,8 @@ body.dark-mode .auth-background h1 {
     background-color: rgba(0,0,0,0.4);
     justify-content: center;
     align-items: center;
+}
+.modal.show {
     display: flex;
 }
 .modal-content {
@@ -839,13 +841,13 @@ body.dark-mode .mobile-menu .close-button {
         function showModalMessage(message, onOk = null) {
             modalMessage.textContent = message;
             modalMessage.classList.remove('text-green-600', 'text-red-600'); // Reset color
-            messageModal.style.display = 'flex';
+            messageModal.classList.add('show');
             modalOkBtn.onclick = () => {
-                messageModal.style.display = 'none';
+                messageModal.classList.remove('show');
                 if (onOk) onOk();
             };
             messageModalCloseBtn.onclick = () => {
-                messageModal.style.display = 'none';
+                messageModal.classList.remove('show');
                 if (onOk) onOk(); // Also call onOk if closed via X
             };
         }
